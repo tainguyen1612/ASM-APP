@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ASM.Models.Category_Course>
+@{
+    ViewBag.Title = "StaffMana";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Category Course</a> </div>
+    <h1>Category Course</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-th"></i> </span>
+                    <button type="button" class="btn btn-default">@Html.ActionLink("Add Category", "AddCategory", "StaffPage")</button>
+                    <h5>List of category</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>CategoryID</th>
+                                <th>Category Name</th>
+                                <th>Description</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                             {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.CategoryID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Category_Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td class="center"><a href="@Url.Action("EditCategory", "StaffPage" , new {id = item.CategoryID })">Edit</a></td>
+                                    <td class="center"><a href="@Url.Action("DeleteCategory", "StaffPage" , new {id = item.CategoryID })">Delete</a></td>
+                                </tr>
+                             }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

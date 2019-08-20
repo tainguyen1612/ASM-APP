@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ASM.Models.Topic>
+
+@{
+    ViewBag.Title = "TopicMana";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Topic</a> </div>
+    <h1>Topic</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-th"></i> </span>
+                    <button type="button" class="btn btn-default">@Html.ActionLink("Add Topic", "AddTopic", "StaffPage")</button>
+                    <h5>List of category</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>TopicID</th>
+                                <th>Topic Name</th>
+                                <th>Description</th>
+                                <th>CourseID</th>
+                                <th>UserID</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.TopicID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Topic_Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserID)</td>
+                                    <td class="center"><a href="@Url.Action("EditTopic", "StaffPage" , new {id = item.TopicID })">Edit</a></td>
+                                    <td class="center"><a href="@Url.Action("DeleteTopic", "StaffPage" , new {id = item.TopicID })">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

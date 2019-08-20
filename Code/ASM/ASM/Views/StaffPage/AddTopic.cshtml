@@ -1,0 +1,64 @@
+﻿@model ASM.Models.Topic
+
+@{
+    ViewBag.Title = "AddTopic";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Add Topic</a> </div>
+    <h1>Add Topic</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <form action="AddTopic" method="POST" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">TopicID</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.TopicID)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Topic Name</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Topic_Name)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Description</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(x => x.Description)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">CourseID</label>
+                            <div class="controls">
+                                <div style="width : 30%">
+                                    @Html.DropDownListFor(a => a.CourseID, new SelectList(Model.coCollection, "CourseID", "CourseID", "Select"))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">UserID(for trainer)</label>
+                            <div class="controls">
+                                <div style="width : 30%">
+                                    @Html.DropDownListFor(a => a.UserID, new SelectList(Model.IdCollection3, "UserID", "UserID", "Select"))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to list", "TopicMana" , "StaffMana")
+</div>

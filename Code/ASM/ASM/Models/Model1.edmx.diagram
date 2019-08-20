@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9dcd08c45a3c4bb7a1e09ce1a9e0b9d2" Name="Diagram1">
+        <EntityTypeShape EntityType="QLDaiHocModel.Category_Course" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDaiHocModel.Course" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDaiHocModel.Profile_User" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDaiHocModel.Topic" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDaiHocModel.User_Account" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="QLDaiHocModel.FK_CateId" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDaiHocModel.FK_CourId" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDaiHocModel.FK_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDaiHocModel.FK_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDaiHocModel.FK_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

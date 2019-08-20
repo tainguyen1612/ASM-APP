@@ -1,0 +1,61 @@
+﻿@model ASM.Models.Topic
+
+@{
+    ViewBag.Title = "EditTopic";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Edit Topic</a> </div>
+    <h1>Edit Topic</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <form action="EditTopic" method="POST" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">TopicID :</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.TopicID)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Topic Name :</label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Topic_Name)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Description</label>
+                            <div class="controls">
+                                @Html.TextAreaFor(x => x.Description)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">CourseID</label>
+                            <div class="controls" style="width: 30%">
+                                @Html.DropDownList("CourseID", (IEnumerable<SelectListItem>)ViewBag.CourseList)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Description</label>
+                            <div class="controls" style="width: 30%">
+                                @Html.DropDownList("UserID", (IEnumerable<SelectListItem>)ViewBag.userTrainerList)
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "TopicMana", "StaffPage")
+</div>
+
