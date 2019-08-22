@@ -7,15 +7,13 @@ using ASM.Models;
 
 namespace ASM.Controllers
 {
-    public class TrainerController : Controller
+    public class TraineeController : Controller
     {
-        // GET: Trainer
-        public ActionResult ProfileTrainer()
+        // GET: Trainee
+        public ActionResult ProfileTrainee()
         {
             QLDaiHocEntities1 db = new QLDaiHocEntities1();
             return View();
-
         }
-
     }
 }

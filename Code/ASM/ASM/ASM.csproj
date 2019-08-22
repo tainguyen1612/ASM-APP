@@ -272,6 +272,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StaffPageController.cs" />
+    <Compile Include="Controllers\TraineeController.cs" />
     <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -337,6 +338,8 @@
     <Content Include="Views\StaffPage\AddTopic.cshtml" />
     <Content Include="Views\StaffPage\EditTopic.cshtml" />
     <Content Include="Views\Trainer\ProfileTrainer.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage3.cshtml" />
+    <Content Include="Views\Trainee\ProfileTrainee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

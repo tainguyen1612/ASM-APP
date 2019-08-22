@@ -143,7 +143,7 @@ namespace ASM.Controllers
             var ma = from b in us
                      join c in pro
                      on b.UserID equals c.UserID
-                     where b.Position == "trainer"
+                     where b.Position == "trainer" && b.Position == "trainee"
                      select new Profile_User()
                      {
                          UserID = c.UserID,
@@ -162,7 +162,7 @@ namespace ASM.Controllers
             Profile_User us = new Profile_User();
             using (QLDaiHocEntities1 db = new QLDaiHocEntities1())
             {
-                us.IdCollection = db.User_Account.Where(a => a.Position == "trainer").ToList();
+                us.IdCollection = db.User_Account.Where(a => a.Position == "trainer" | a.Position == "trainer").ToList();
             }
             
             return View(us);
@@ -172,15 +172,17 @@ namespace ASM.Controllers
         {
             using (QLDaiHocEntities1 db = new QLDaiHocEntities1())
             {
-                Session["name"] = pro.Full_Name;
                 if (ModelState.IsValid)
                 {
                     db.Profile_User.Add(pro);
                     db.SaveChanges();
                     return RedirectToAction("ProTrainer", "StaffPage");
                 }
+                else
+                {
+                    return RedirectToAction("ProTrainer", "StaffPage");
+                }
             }
-            return View();
         }
         public ActionResult EditPro(string id)
         {
@@ -382,6 +384,99 @@ namespace ASM.Controllers
             var co = db.Topic.FirstOrDefault(x => x.CourseID == id);
             db.Topic.Remove(co);
             db.SaveChanges();
+        }
+
+
+        //check value exits 
+        public JsonResult CheckValueTrainee(string check)
+        {
+            System.Threading.Thread.Sleep(200);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchID = db.User_Account.Where(x => x.UserID == check).SingleOrDefault();
+            if (searchID != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        public JsonResult CheckNameTrainee(string username)
+        {
+            System.Threading.Thread.Sleep(500);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchName = db.User_Account.Where(x => x.UserName == username).SingleOrDefault();
+            if (searchName != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+        //Check category
+        public JsonResult CheckValueCate(string check)
+        {
+            System.Threading.Thread.Sleep(200);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchID = db.Category_Course.Where(x => x.CategoryID == check).SingleOrDefault();
+            if (searchID != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        public JsonResult CheckNameCate(string username)
+        {
+            System.Threading.Thread.Sleep(500);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchName = db.Category_Course.Where(x => x.Category_Name == username).SingleOrDefault();
+            if (searchName != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        //Check value profile
+        public JsonResult CheckProId(string check)
+        {
+            System.Threading.Thread.Sleep(500);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchID = db.Profile_User.Where(x => x.UserID == check).SingleOrDefault();
+            if (searchID != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        public JsonResult CheckPhone(string phone)
+        {
+            System.Threading.Thread.Sleep(500);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchPhone = db.Profile_User.Where(x => x.Phone == phone).SingleOrDefault();
+            if (searchPhone != null )
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
         }
     }
 }

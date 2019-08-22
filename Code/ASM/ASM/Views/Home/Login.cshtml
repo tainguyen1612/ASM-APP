@@ -11,35 +11,36 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     </head>
     <body>
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post , new { @class = "login-form" }))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login-form" }))
         {
-                <h1>Login</h1>
-                <div class="txtb">
-                    @Html.TextBoxFor(a => a.UserName)
-                    <span data-placeholder="Username"></span>
-                </div>
-                @*@Html.ValidationMessageFor(a => a.username)*@
-                <div class="txtb">
-                    @Html.PasswordFor(a => a.Password)
-                    <span data-placeholder="Password"></span>
-                </div>
+            <h1>Login</h1>
+            <div class="txtb">
+                @Html.TextBoxFor(a => a.UserName)
+                <span data-placeholder="Username"></span>
+            </div>
+            <p style="color: red">@Html.ValidationMessageFor(a => a.UserName)</p>
+            <div class="txtb">
+                @Html.PasswordFor(a => a.Password)
+                <span data-placeholder="Password"></span>
+            </div>
+            <p style="color: red">@Html.ValidationMessageFor(a => a.Password)</p>
+            <br>
+            <input type="submit" class="logbtn" value="Login">
 
-                <input type="submit" class="logbtn" value="Login">
+            <div class="bottom-text">
+                Don't have account? <a href="#">Sign up</a>
+            </div>
+            <script type="text/javascript">
+                $(".txtb input").on("focus", function () {
+                    $(this).addClass("focus");
+                });
 
-                <div class="bottom-text">
-                    Don't have account? <a href="#">Sign up</a>
-                </div>
-                <script type="text/javascript">
-                    $(".txtb input").on("focus", function () {
-                        $(this).addClass("focus");
-                    });
-
-                    $(".txtb input").on("blur", function () {
-                        if ($(this).val() == "")
-                            $(this).removeClass("focus");
-                    });
-                </script>
-            }
+                $(".txtb input").on("blur", function () {
+                    if ($(this).val() == "")
+                        $(this).removeClass("focus");
+                });
+            </script>
+        }
     </body>
 </html>
 

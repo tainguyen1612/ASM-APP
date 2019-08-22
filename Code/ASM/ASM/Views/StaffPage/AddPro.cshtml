@@ -5,7 +5,7 @@
 }
 
 <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Add Account</a> </div>
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Add Pro</a> </div>
     <h1>Add Account</h1>
 </div>
 <div class="container-fluid">
@@ -19,7 +19,8 @@
                             <label class="control-label">UserID</label>
                             <div class="controls">
                                 <div style="width : 30%">
-                                    @Html.DropDownListFor(a => a.UserID , new SelectList(Model.IdCollection, "UserID" , "UserID","Select"))
+                                    @Html.DropDownListFor(a => a.UserID, new SelectList(Model.IdCollection, "UserID", "UserID", "Select"), new { @id = "UserID", @onchange = "CheckValue()" })
+                                    <p id="Status"></p>
                                 </div> 
                             </div>
                         </div>
@@ -38,7 +39,8 @@
                         <div class="control-group">
                             <label class="control-label">Phone</label>
                             <div class="controls">
-                                @Html.TextBoxFor(x => x.Phone)
+                                @Html.TextBoxFor(x => x.Phone, new { @id = "Phone", @onchange = "CheckValue2()" })
+                                <p id="Status2"></p>
                             </div>
                         </div>
                         <div class="control-group">
@@ -56,4 +58,41 @@
         </div>
     </div>
 </div>
+<script>
+    function CheckValue() {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckProId", "StaffPage")",
+            {
+                check: $("#UserID").val()
+            },
+    function (data) {
+        if (data == 0) {
+            $("#Status").html('<font color="Green"> Avaiable! you can use it.</font>');
+            $("#UserID").css("border-color", "Green");
+        }
+        else {
+            $("#Status").html('<font color="Red"> User is Exits.</font>');
+            $("#UserID").css("border-color", "Red");
+        }
+        });
+    }
+
+    function CheckValue2() {
+        $("#Status2").html("Checking...");
+        $.post("@Url.Action("CheckPhone", "StaffPage")",
+            {
+                phone: $("#Phone").val()
+            },
+    function (data) {
+        if (data == 0) {
+            $("#Status2").html('<font color="Green"> Avaiable! you can use it.</font>');
+            $("#Phone").css("border-color", "Green");
+        }
+        else {
+            $("#Status2").html('<font color="Red"> User is Exits Or != 10.</font>');
+            $("#Phone").css("border-color", "Red");
+        }
+        });
+    }
+</script>
 

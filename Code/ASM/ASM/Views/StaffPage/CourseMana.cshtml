@@ -17,7 +17,10 @@
                 <div class="widget-title">
                     <span class="icon"> <i class="icon-th"></i> </span>
                     <button type="button" class="btn btn-default">@Html.ActionLink("Add Course", "AddCourse", "StaffPage")</button>
-                    <h5>List of category</h5>
+                    <div class="input-group" style="float: right">
+                        <input type="text" id="Search" placeholder="Search" class="form-control" />
+                    </div>
+                    <h5>List of course</h5>
                 </div>
                 <div class="widget-content nopadding">
                     <table class="table table-bordered ">
@@ -34,7 +37,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr class="Search">
                                     <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Course_Name)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
@@ -51,4 +54,23 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>

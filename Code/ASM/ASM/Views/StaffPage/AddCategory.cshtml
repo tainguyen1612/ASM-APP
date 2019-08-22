@@ -18,13 +18,15 @@
                         <div class="control-group">
                             <label class="control-label">Category ID :</label>
                             <div class="controls">
-                                @Html.TextBoxFor(x => x.CategoryID)
+                                @Html.TextBoxFor(x => x.CategoryID, new { @id = "CategoryID", @onchange = "CheckValue()" })
+                                <p id="Status"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Category Name</label>
                             <div class="controls">
-                                @Html.TextBoxFor(x => x.Category_Name)
+                                @Html.TextBoxFor(x => x.Category_Name, new { @id = "CategoryName", @onchange = "CheckValue2()" })
+                                <p id="Status2"></p>
                             </div>
                         </div>
                         <div class="control-group">
@@ -42,3 +44,40 @@
         </div>
     </div>
 </div>
+<script>
+    function CheckValue() {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckValueCate", "StaffPage")",
+            {
+                check: $("#CategoryID").val()
+            },
+    function (data) {
+        if (data == 0) {
+            $("#Status").html('<font color="Green"> Avaiable! you can use it.</font>');
+            $("#Category").css("border-color", "Green");
+        }
+        else {
+            $("#Status").html('<font color="Red"> User is Exits.</font>');
+            $("#Category").css("border-color", "Red");
+        }
+        });
+    }
+
+    function CheckValue2() {
+        $("#Status2").html("Checking...");
+        $.post("@Url.Action("CheckNameCate", "StaffPage")",
+            {
+                username: $("#CategoryName").val()
+            },
+    function (data) {
+        if (data == 0) {
+            $("#Status2").html('<font color="Green"> Avaiable! you can use it.</font>');
+            $("#CategoryName").css("border-color", "Green");
+        }
+        else {
+            $("#Status2").html('<font color="Red"> User is Exits.</font>');
+            $("#CategoryName").css("border-color", "Red");
+        }
+        });
+    }
+</script>

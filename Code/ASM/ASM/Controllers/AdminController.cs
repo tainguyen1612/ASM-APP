@@ -79,5 +79,36 @@ namespace ASM.Controllers
             db.User_Account.Remove(acc);
             db.SaveChanges();
         }
+
+        //check value exits 
+        public JsonResult CheckValue(string check )
+        {
+            System.Threading.Thread.Sleep(200);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchID = db.User_Account.Where(x => x.UserID == check).SingleOrDefault();
+            if(searchID != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
+
+        public JsonResult CheckName(string username)
+        {
+            System.Threading.Thread.Sleep(500);
+            QLDaiHocEntities1 db = new QLDaiHocEntities1();
+            var searchName = db.User_Account.Where(x => x.UserName == username).SingleOrDefault();
+            if (searchName != null)
+            {
+                return Json(1);
+            }
+            else
+            {
+                return Json(0);
+            }
+        }
     }
 }

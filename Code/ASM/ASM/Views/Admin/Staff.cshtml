@@ -20,10 +20,13 @@
                 <div class="widget-title">
                     <span class="icon"><i class="icon-th"></i></span>
                     <button type="button" class="btn btn-default">@Html.ActionLink("Add Account", "AddAccount", "Admin")</button>
+                    <div class="input-group" style="float: right">
+                        <input type="text" id="Search" placeholder="Search" class="form-control" />
+                    </div>
                     <h5>Data table</h5>
                 </div>
                 <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table">
+                    <table class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -36,18 +39,18 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr class="Search">
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.UserID)
+                                        @item.UserID
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.UserName)
+                                        @item.UserName
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Password)
+                                        @item.Password
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Position)
+                                        @item.Position
                                     </td>
                                     <td class="center"><a href="@Url.Action("EditAccount", "Admin" , new {id = item.UserID })">Edit</a></td>
                                     <td class="center"><a href="@Url.Action("DeleteAccount", "Admin" , new {id = item.UserID })">Delete</a></td>
@@ -60,3 +63,23 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>
